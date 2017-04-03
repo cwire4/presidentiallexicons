@@ -20,9 +20,9 @@ for root, dirs, files in os.walk("transcripts"):
     for directory in dirs:
         transcript_count = 0
         total_word_count = 0
-        individualpath = path[0] + "/" + directory + "/*.txt"
+        individualPath = path[0] + "/" + directory + "/*.txt"
 
-        transcripts = sorted(glob.glob(individualpath))
+        transcripts = sorted(glob.glob(individualPath))
         # print(transcripts)
         corpus_raw = u""
         for transcript in transcripts:
