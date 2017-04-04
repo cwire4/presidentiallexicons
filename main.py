@@ -22,7 +22,6 @@ for root, dirs, files in os.walk("transcripts"):
     # For Every Dir in Transcripts
     for directory in dirs:
         # Initialize
-        transcript_count = 0
         total_word_count = 0
 
         # All txt files in this Dir e.g. gwbush
@@ -30,6 +29,7 @@ for root, dirs, files in os.walk("transcripts"):
 
         # Get list of sorted Transcript files
         transcripts = sorted(glob.glob(individualPath))
+        transcript_count = len(transcripts)
 
         # All the cool kids use Unicode
         corpus_raw = u""
@@ -39,7 +39,7 @@ for root, dirs, files in os.walk("transcripts"):
 
             # Keep track of number of transcripts
             # @todo Just get transcripts count from size of transcripts array
-            transcript_count += 1
+            # transcript_count += 1
 
             # Open file for reading
             with codecs.open(transcript, 'r', 'utf-8') as transcript_file:
