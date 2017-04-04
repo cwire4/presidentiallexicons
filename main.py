@@ -31,15 +31,10 @@ for root, dirs, files in os.walk("transcripts"):
         transcripts = sorted(glob.glob(individualPath))
         transcript_count = len(transcripts)
 
-        # All the cool kids use Unicode
-        corpus_raw = u""
-
         # Let's look at each transcript file
         for transcript in transcripts:
-
-            # Keep track of number of transcripts
-            # @todo Just get transcripts count from size of transcripts array
-            # transcript_count += 1
+            # All the cool kids use Unicode
+            corpus_raw = u""
 
             # Open file for reading
             with codecs.open(transcript, 'r', 'utf-8') as transcript_file:
