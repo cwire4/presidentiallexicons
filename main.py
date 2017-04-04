@@ -3,16 +3,12 @@ from __future__ import absolute_import, division, print_function
 import codecs
 import operator
 import os
-from decimal import Decimal
-
 import TranscriptService as TS
-
 import nltk
 
-# @todo So much nesting this code should be executed in a forest. Let's update this.
 for root, dirs, files in TS.transcript_dirs_list("transcripts"):
 
-    # Setup tokenization
+    # Setup tokenizer
     tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
 
     # You are -->> Here
@@ -27,30 +23,30 @@ for root, dirs, files in TS.transcript_dirs_list("transcripts"):
         # Get list of sorted Transcript files
         transcripts = TS.get_transcripts_list(transcript_paths)
 
-        # total_word_count = 0
-
         # Let's look at each transcript file
         for transcript in transcripts:
-            # print(transcript.path)
+
             # Open file for reading
             with codecs.open(transcript.path, 'r', 'utf-8') as transcript_file:
                 transcript.corpus += transcript_file.read()
 
-            # Grab sentences by their ...
+            # Grab sentences by corpus...
             transcript.sentences = tokenizer.tokenize(transcript.corpus)
 
             # Inspect Sentences
             # @todo this is too nebulous it does a lot behind the scenes
             TS.inspect_sentences(transcript)
 
-            # Add word count to our total
-            # total_word_count += transcript.word_count
-
+        ################################################################################################################
+        # It prints the things
+        ################################################################################################################
         # Dump it for the peoples
         # How many transcripts do we have?
         transcript_count = len(transcripts)
+
         # Word frequencies across all transcripts
         total_word_frequencies = TS.word_frequencies(transcripts)
+
         # Word count across all transcripts (just adding the frequencies list)
         total_word_count = sum(total_word_frequencies.values())
 
